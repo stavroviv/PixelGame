@@ -30,12 +30,17 @@ public class Input implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() > currentKeys.length) {
+            return;
+        }
         currentKeys[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() > currentKeys.length) {
+            return;
+        }
         currentKeys[e.getKeyCode()] = false;
     }
-
 }

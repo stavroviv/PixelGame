@@ -17,8 +17,8 @@ public class Player extends Mob {
 
     public Player(float posX, float posY) {
         super(posX, posY);
-        width = 16;
-        height = 16;
+        width = 56;
+        height = 28;
         Animation anim = new Animation();
         loadImages(anim);
         animations = new Animation[]{anim};

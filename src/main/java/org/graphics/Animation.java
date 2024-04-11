@@ -14,7 +14,7 @@ public class Animation {
     public void playAnimation() {
         if (System.nanoTime() > (lastTime + 1000000000 / fps)) {
             currentImage++;
-            if (currentImage >= images.size()) {
+            if (currentImage == images.size()) {
                 currentImage = 0;
             }
             lastTime = System.nanoTime();
@@ -22,6 +22,6 @@ public class Animation {
     }
 
     public BufferedImage getImage() {
-        return images.size() > currentImage ? images.get(currentImage) : null;
+        return images.get(currentImage);
     }
 }

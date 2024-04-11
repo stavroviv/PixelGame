@@ -9,6 +9,7 @@ import org.object.Sprite;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class World {
@@ -25,9 +26,9 @@ public class World {
         backDrop = Renderer.loadImage("backDrop.png");
         backDrop2 = Renderer.loadImage("backDrop2.png");
         addSprite(new Player(400, 100));
-        addSprite(new Platform(600, 800, 1000, 40));
-        addSprite(new Platform(1700, 700, 1400, 40));
-        addSprite(new Platform(1700, 700, 1400, 40));
+        for (int i = 0; i < 150; i++) {
+            addSprite(new Platform(2 * i * 100, 900 - new Random().nextInt(4) * 50, 300, 25));
+        }
         addSprite(new BadGuy(500, 100));
     }
 

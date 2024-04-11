@@ -32,12 +32,8 @@ public class World {
     }
 
     public World() {
-        try {
-            backDrop = Renderer.loadImage("/images/backDrop.png");
-            backDrop2 = Renderer.loadImage("/images/backDrop2.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        backDrop = Renderer.loadImage("/images/backDrop.png");
+        backDrop2 = Renderer.loadImage("/images/backDrop2.png");
     }
 
     public static void update() {

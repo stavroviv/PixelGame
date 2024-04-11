@@ -18,24 +18,22 @@ public class Player extends Mob {
 
     public Player(float posX, float posY) {
         super(posX, posY);
-
         width = 16;
         height = 16;
-//		runSpeed = 100; 
         Animation anim = new Animation();
-        try {
-            anim.images.add(Renderer.loadImage("/images/roach/1.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/2.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/3.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/4.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/5.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/6.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/7.gif"));
-            anim.images.add(Renderer.loadImage("/images/roach/8.gif"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadImages(anim);
         animations = new Animation[]{anim};
+    }
+
+    private static void loadImages(Animation anim) {
+        anim.images.add(Renderer.loadImage("/images/roach/1.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/2.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/3.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/4.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/5.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/6.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/7.gif"));
+        anim.images.add(Renderer.loadImage("/images/roach/8.gif"));
     }
 
     public void update(float deltaTime) {

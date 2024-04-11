@@ -21,13 +21,8 @@ public class Bullet extends Sprite {
 
         Animation anim = new Animation();
         anim.fps = 80;
-        try {
-            anim.images.add(Renderer.loadImage("/images/bul1.png"));
-            anim.images.add(Renderer.loadImage("/images/bul2.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        anim.images.add(Renderer.loadImage("/images/bul1.png"));
+        anim.images.add(Renderer.loadImage("/images/bul2.png"));
         animations = new Animation[]{anim};
     }
 

@@ -49,15 +49,12 @@ public class Sprite {
         realY = realY - (int) Renderer.camY + Renderer.gameHeight / 2;
 
         g.drawImage(image, realX, realY, image.getWidth(), image.getHeight(), null);
-
     }
 
     public void update(float deltaTime) {
-
         if (Input.getKey(KeyEvent.VK_ESCAPE)) {
             Game.quit();
         }
-
     }
 
     protected Sprite[] getColliders(float x, float y) {

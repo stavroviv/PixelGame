@@ -169,8 +169,13 @@ public class Renderer {
 
     }
 
-    public static BufferedImage loadImage(String path) throws IOException {
-        BufferedImage rowImage = ImageIO.read(Renderer.class.getResource(path));
+    public static BufferedImage loadImage(String path) throws RuntimeException  {
+        BufferedImage rowImage = null;
+        try {
+            rowImage = ImageIO.read(Renderer.class.getResource(path));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         BufferedImage finalImage = canvas.getGraphicsConfiguration()
                 .createCompatibleImage(rowImage.getWidth(), rowImage.getHeight(), rowImage.getTransparency());
         finalImage.getGraphics().drawImage(rowImage, 0, 0, rowImage.getWidth(), rowImage.getHeight(), null);

@@ -35,9 +35,7 @@ public class Player extends Mob {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         animations = new Animation[]{anim};
-
     }
 
     public void update(float deltaTime) {

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Bullet extends Sprite {
 
-    public int direction = -1;
+    public int direction;
     public float speed = 200.0f;
     public float damage = 10.0f;
 
@@ -40,8 +40,6 @@ public class Bullet extends Sprite {
 
         Sprite[] colliders = getColliders(posX, posY);
         if (colliders.length > 0) {
-//			boolean 
-
             for (Sprite sprite : colliders) {
                 if (sprite instanceof BadGuy) {
                     BadGuy badGuy = (BadGuy) sprite;

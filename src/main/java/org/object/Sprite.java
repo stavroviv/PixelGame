@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class Sprite {
 
-    public float posX = 0;
-    public float posY = 0;
+    public float posX;
+    public float posY;
 
     public Animation[] animations;
 

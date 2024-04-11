@@ -7,17 +7,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class World {
 
-    public static World currentWorld = null;
-
-//	private static long lastTime = System.nanoTime();
-
-    public ArrayList<Sprite> sprites = new ArrayList<>();
-    public ArrayList<Sprite> addSprites = new ArrayList<>();
-    public ArrayList<Sprite> removeSprites = new ArrayList<>();
-
+    public static World currentWorld;
+    public List<Sprite> sprites = new ArrayList<>();
+    public List<Sprite> addSprites = new ArrayList<>();
+    public List<Sprite> removeSprites = new ArrayList<>();
     private static BufferedImage backDrop = null;
     private static BufferedImage backDrop2 = null;
 
@@ -59,14 +56,11 @@ public class World {
     }
 
     public static void render(Graphics g) {
-
         loadBack(g, 50, backDrop);
         loadBack(g, 3, backDrop2);
-
         for (Sprite sprite : currentWorld.sprites) {
             sprite.render(g);
         }
-
     }
 
     public static void loadBack(Graphics g, int divide, BufferedImage backDrop) {
@@ -79,7 +73,7 @@ public class World {
         }
 
         int x = backDropX - (int) Renderer.camX / divide;
-        int bufferX = 0;
+        int bufferX;
 
         if (backDropX > Renderer.camX / divide) {
             bufferX = backDropX - Renderer.gameWidth - (int) Renderer.camX / divide;

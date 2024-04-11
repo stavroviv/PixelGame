@@ -10,16 +10,8 @@ public class Game {
 
     public static void main(String[] args) {
         Renderer.init();
-        createWorld();
+        World.init();
         Renderer.startRendering();
-    }
-
-    private static void createWorld() {
-        World.currentWorld = new World();
-        World.currentWorld.addSprite(new Player(400, 100));
-        World.currentWorld.addSprite(new Platform(600, 800, 1000, 40));
-        World.currentWorld.addSprite(new Platform(1700, 700, 1400, 40));
-        World.currentWorld.addSprite(new BadGuy(500, 100));
     }
 
     public static void quit() {

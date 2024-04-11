@@ -90,7 +90,6 @@ public class Renderer {
         frame.setLocationRelativeTo(null);
 
         frame.addWindowListener(new WindowAdapter() {
-
             public void windowClosing(WindowEvent e) {
                 Game.quit();
             }

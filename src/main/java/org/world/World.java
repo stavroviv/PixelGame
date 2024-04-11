@@ -1,6 +1,9 @@
 package org.world;
 
 import org.graphics.Renderer;
+import org.object.BadGuy;
+import org.object.Platform;
+import org.object.Player;
 import org.object.Sprite;
 
 import java.awt.*;
@@ -20,15 +23,21 @@ public class World {
 
     private static int backDropX = 0;
 
-    public World() {
+    public static void init() {
+        currentWorld = new World();
+        currentWorld.addSprite(new Player(400, 100));
+        currentWorld.addSprite(new Platform(600, 800, 1000, 40));
+        currentWorld.addSprite(new Platform(1700, 700, 1400, 40));
+        currentWorld.addSprite(new BadGuy(500, 100));
+    }
 
+    public World() {
         try {
             backDrop = Renderer.loadImage("/images/backDrop.png");
             backDrop2 = Renderer.loadImage("/images/backDrop2.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void update() {

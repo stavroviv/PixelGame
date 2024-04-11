@@ -59,8 +59,12 @@ public class Renderer {
         gameWidth = canvasWidth / factor + xDiff / factor;
         gameHeight = canvasHeight / factor + yDiff / factor;
 
-        canvasWidth = gameWidth * factor + 1;
+        canvasWidth = gameWidth * factor;
         canvasHeight = gameHeight * factor;
+    }
+
+    public static int getRealWidth() {
+        return canvasWidth;
     }
 
     private static void makeFullScreen() {
@@ -147,7 +151,9 @@ public class Renderer {
         World.render(g);
 
         g.setColor(Color.black);
-        g.drawString("FPS: " + currentFPS, 5, gameHeight - 15);
+        g.drawString("FPS: " + currentFPS +
+                        " sprites: " + World.getSprites().size(),
+                5, gameHeight - 15);
         g.dispose();
         g = canvas.getGraphics();
         g.drawImage(image, 0, 0, canvasWidth, canvasHeight, null);

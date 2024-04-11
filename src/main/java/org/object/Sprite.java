@@ -26,6 +26,9 @@ public class Sprite {
 
     public boolean isSolid = true;
 
+    private int realX;
+    private int realY;
+
     public Sprite(float posX, float posY) {
         this.posX = posX;
         this.posY = posY;
@@ -43,13 +46,17 @@ public class Sprite {
             return;
         }
 
-        int realX = (int) posX - image.getHeight() / 2;
-        int realY = (int) posY - image.getWidth() / 2;
+        realX = (int) posX - image.getHeight() / 2;
+        realY = (int) posY - image.getWidth() / 2;
 
         realX = realX - (int) Renderer.camX + Renderer.gameWidth / 2;
         realY = realY - (int) Renderer.camY + Renderer.gameHeight / 2;
 
         g.drawImage(image, realX, realY, image.getWidth(), image.getHeight(), null);
+    }
+
+    public int getRealX() {
+        return realX;
     }
 
     public void update(float deltaTime) {
@@ -85,26 +92,6 @@ public class Sprite {
     }
 
     protected boolean doesCollide(float x, float y) {
-        float myLeft = x - width / 2;
-        float myRight = x + width / 2;
-        float myUp = y - height / 2;
-        float myDown = y + height / 2;
-
-        for (Sprite sprite : World.getSprites()) {
-            if (sprite == this || !sprite.isSolid) {
-                continue;
-            }
-
-            float otherLeft = sprite.posX - sprite.width / 2;
-            float otherRight = sprite.posX + sprite.width / 2;
-            float otherUp = sprite.posY - sprite.height / 2;
-            float otherDown = sprite.posY + sprite.height / 2;
-
-            if (myLeft < otherRight && myRight > otherLeft && myDown > otherUp && myUp < otherDown) {
-                return true;
-            }
-        }
-
-        return false;
+        return !getColliders(x,y).isEmpty();
     }
 }

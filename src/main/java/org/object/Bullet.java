@@ -7,14 +7,14 @@ import org.world.World;
 public class Bullet extends Sprite {
 
     public int direction;
-    public float speed = 200.0f;
+    public float speed = 150.0f;
     public float damage = 10.0f;
 
     public Bullet(float posX, float posY, int direction) {
         super(posX, posY);
         this.direction = direction;
-        width = 16;
-        height = 16;
+        width = 8;
+        height = 8;
         isSolid = false;
 
         Animation anim = new Animation();
@@ -25,6 +25,10 @@ public class Bullet extends Sprite {
     }
 
     public void update(float deltaTime) {
+        if (getRealX() < 0 || getRealX() > Renderer.getRealWidth()) {
+            World.removeSprite(this);
+            return;
+        }
         float moveX = 0;
         moveX += speed * direction;
         posX += moveX * deltaTime;

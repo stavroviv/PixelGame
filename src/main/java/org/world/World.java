@@ -22,17 +22,25 @@ public class World {
 
     private static int backDropX = 0;
 
+    private World() {
+    }
+
     public static void init() {
-        backDrop = Renderer.loadImage("backDrop.png");
-        backDrop2 = Renderer.loadImage("backDrop2.png");
+        initBackground();
         addSprite(new Player(400, 100));
-        for (int i = 0; i < 150; i++) {
-            addSprite(new Platform(2 * i * 100, 900 - new Random().nextInt(4) * 50, 300, 25));
-        }
+        initPlatforms();
         addSprite(new BadGuy(500, 100));
     }
 
-    private World() {
+    private static void initPlatforms() {
+        for (int i = 0; i < 500; i++) {
+            addSprite(new Platform(2 * i * 100, 900 - new Random().nextInt(4) * 50, 300, 25));
+        }
+    }
+
+    private static void initBackground() {
+        backDrop = Renderer.loadImage("backDrop.png");
+        backDrop2 = Renderer.loadImage("backDrop2.png");
     }
 
     public static void update() {
@@ -49,8 +57,8 @@ public class World {
     }
 
     public static void render(Graphics g) {
-        loadBack(g, 50, backDrop);
-        loadBack(g, 3, backDrop2);
+        loadBack(g, 16, backDrop);
+        loadBack(g, 4, backDrop2);
         for (Sprite sprite : sprites) {
             sprite.render(g);
         }
@@ -72,7 +80,6 @@ public class World {
         } else {
             bufferX = backDropX + Renderer.gameWidth - (int) Renderer.camX / divide;
         }
-
         g.drawImage(backDrop, x, 0, Renderer.gameWidth, Renderer.gameHeight, null);
         g.drawImage(backDrop, bufferX, 0, Renderer.gameWidth, Renderer.gameHeight, null);
     }

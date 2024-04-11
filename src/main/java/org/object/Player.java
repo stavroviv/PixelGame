@@ -11,7 +11,7 @@ public class Player extends Mob {
 
     private float velocityY = 10;
     private float gravity = 90.f;
-    private float jumpHeight = 150;
+    private float jumpHeight = 250;
 
     private int direction = 1;
 
@@ -73,7 +73,7 @@ public class Player extends Mob {
 
         // END COLLISIONS
         if (Input.getKey(KeyEvent.VK_SPACE)) {
-            Bullet bullet = new Bullet(posX, posY, direction);
+            Bullet bullet = new Bullet(posX + (direction == 1 ? 60 : -30), posY - 15, direction);
             World.addSprite(bullet);
         }
 
@@ -82,7 +82,5 @@ public class Player extends Mob {
 
         Renderer.camX = posX;
         Renderer.camY = 600;
-
     }
-
 }

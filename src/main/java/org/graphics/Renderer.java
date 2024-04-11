@@ -29,8 +29,8 @@ public class Renderer {
     private static long lastFPSCheck = 0;
     private static int currentFPS = 0;
 
-    private static int targetFPS = 100;
-    private static int targetTime = 1000000000 / targetFPS;
+    private static final int targetFPS = 100;
+    private static final int targetTime = 1000000000 / targetFPS;
 
     public static float camX = 0;
     public static float camY = 0;
@@ -102,71 +102,56 @@ public class Renderer {
     }
 
     public static void startRendering() {
+        new Thread(Renderer::gameActivity).start();
+    }
 
-        Thread thread = new Thread() {
+    private static void gameActivity() {
+        GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
+        VolatileImage vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
+        int totalFrames = 0;
 
-            public void run() {
-
-                GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
-                VolatileImage vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
-                int TotalFrames = 0;
-
-                while (true) {
-                    long startTime = System.nanoTime();
-
-                    TotalFrames++;
-                    if (System.nanoTime() > lastFPSCheck + 1000000000) {
-                        lastFPSCheck = System.nanoTime();
-                        currentFPS = TotalFrames;
-                        TotalFrames = 0;
-                    }
-
-                    if (vImage.validate(gc) == VolatileImage.IMAGE_INCOMPATIBLE) {
-                        vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
-                    }
-
-                    Graphics g = vImage.getGraphics();
-
-                    g.setColor(Color.black);
-                    g.fillRect(0, 0, gameWidth, gameHeight);
-
-                    // update
-                    World.update();
-                    Input.finishInput();
-
-                    // RENDER
-
-                    World.render(g);
-
-                    // RENDER END
-
-                    g.setColor(Color.black);
-                    g.drawString("" + currentFPS, 5, gameHeight - 15);
-
-                    g.dispose();
-
-                    g = canvas.getGraphics();
-                    g.drawImage(vImage, 0, 0, canvasWidth, canvasHeight, null);
-
-                    g.dispose();
-
-                    long totalTime = System.nanoTime() - startTime;
-
-                    if (totalTime < targetTime) {
-                        try {
-                            Thread.sleep((targetTime - totalTime) / 1000000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
-
-
+        while (true) {
+            long startTime = System.nanoTime();
+            totalFrames++;
+            if (System.nanoTime() > lastFPSCheck + 1000000000) {
+                lastFPSCheck = System.nanoTime();
+                currentFPS = totalFrames;
+                totalFrames = 0;
             }
-        };
-        thread.start();
 
+            if (vImage.validate(gc) == VolatileImage.IMAGE_INCOMPATIBLE) {
+                vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
+            }
+
+            showGraphics(vImage);
+
+            long totalTime = System.nanoTime() - startTime;
+
+            if (totalTime < targetTime) {
+                try {
+                    Thread.sleep((targetTime - totalTime) / 1000000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static void showGraphics(VolatileImage image) {
+        Graphics g = image.getGraphics();
+        g.setColor(Color.black);
+        g.fillRect(0, 0, gameWidth, gameHeight);
+
+        World.update();
+        Input.finishInput();
+        World.render(g);
+
+        g.setColor(Color.black);
+        g.drawString("" + currentFPS, 5, gameHeight - 15);
+        g.dispose();
+        g = canvas.getGraphics();
+        g.drawImage(image, 0, 0, canvasWidth, canvasHeight, null);
+        g.dispose();
     }
 
     public static BufferedImage loadImage(String path) throws RuntimeException {

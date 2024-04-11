@@ -32,8 +32,7 @@ public class Bullet extends Sprite {
         moveX += speed * direction;
         posX += moveX * deltaTime;
         for (Sprite sprite : getColliders(posX, posY)) {
-            if (sprite instanceof BadGuy ) {
-                BadGuy badGuy = (BadGuy) sprite;
+            if (sprite instanceof BadGuy badGuy) {
                 badGuy.takeDamage(damage);
                 World.currentWorld.removeSprite(this);
             }

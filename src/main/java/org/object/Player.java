@@ -8,7 +8,7 @@ import org.graphics.Renderer;
 import org.input.Input;
 import org.world.World;
 
-public class Player extends Mob{
+public class Player extends Mob {
 
 	private float velocityY = 10;
 	private float gravity = 90.f;
@@ -24,14 +24,14 @@ public class Player extends Mob{
 //		runSpeed = 100; 
 		Animation anim = new Animation();
 		try {
-			anim.images.add(Renderer.loadImage("/resources/images/roach/1.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/2.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/3.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/4.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/5.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/6.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/7.gif"));
-			anim.images.add(Renderer.loadImage("/resources/images/roach/8.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/1.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/2.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/3.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/4.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/5.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/6.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/7.gif"));
+			anim.images.add(Renderer.loadImage("/images/roach/8.gif"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

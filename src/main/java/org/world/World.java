@@ -26,8 +26,8 @@ public class World {
 	public World(){
 
 		try {
-			backDrop = Renderer.loadImage("/resources/images/backDrop.png");
-			backDrop2 = Renderer.loadImage("/resources/images/backDrop2.png");
+			backDrop = Renderer.loadImage("/images/backDrop.png");
+			backDrop2 = Renderer.loadImage("/images/backDrop2.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

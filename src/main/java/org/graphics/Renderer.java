@@ -73,21 +73,17 @@ public class Renderer {
 	
 		canvasWidth = gameWidth * factor+1;
 		canvasHeight = gameHeight * factor;
-		
 	}
 	
 	private static void makeFullScreen() {
-		
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice gd = env.getDefaultScreenDevice();
-		
 		if (gd.isFullScreenSupported()) {
 			// doesn't set a really fullscreen in win 10, even with hint System.setProperty("sun.java2d.d3d", "false");
 			// gd.setFullScreenWindow(frame); 
 			frame.setExtendedState(Frame.MAXIMIZED_BOTH); 
 			frame.setUndecorated(true);
 		}
-		
 	}
 	
 	public static void init() {
@@ -116,7 +112,6 @@ public class Renderer {
 		
 		canvas.addKeyListener(new Input());
 		canvas.requestFocus();
-	
 	}
 	
 	public static void startRendering() {
@@ -188,13 +183,10 @@ public class Renderer {
 	}
 	
 	public static BufferedImage loadImage(String path) throws IOException {
-	
 		BufferedImage rowImage = ImageIO.read(Renderer.class.getResource(path));
 		BufferedImage finalImage = canvas.getGraphicsConfiguration()
 				.createCompatibleImage(rowImage.getWidth(), rowImage.getHeight(), rowImage.getTransparency());
-				
 		finalImage.getGraphics().drawImage(rowImage, 0, 0, rowImage.getWidth(), rowImage.getHeight(), null);
-			
 		return finalImage;
 	}
 }

@@ -8,18 +8,17 @@ import org.object.Sprite;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class World {
 
     public static World currentWorld;
-    public List<Sprite> sprites = new ArrayList<>();
-    public List<Sprite> addSprites = new ArrayList<>();
-    public List<Sprite> removeSprites = new ArrayList<>();
-    private static BufferedImage backDrop = null;
-    private static BufferedImage backDrop2 = null;
+    public Set<Sprite> sprites = new HashSet<>();
+    public Set<Sprite> addSprites = new HashSet<>();
+    public Set<Sprite> removeSprites = new HashSet<>();
+    private static BufferedImage backDrop;
+    private static BufferedImage backDrop2;
 
     private static int backDropX = 0;
 
@@ -37,25 +36,14 @@ public class World {
     }
 
     public static void update() {
-
-//		float deltaTime = (System.nanoTime() - lastTime)/1000000000.0f;
         float deltaTime = 0.07f;
-
         for (Sprite sprite : currentWorld.sprites) {
             sprite.update(deltaTime);
         }
-
-        for (Sprite sprite : currentWorld.addSprites) {
-            if (!currentWorld.sprites.contains(sprite)) {
-                currentWorld.sprites.add(sprite);
-            }
-        }
+        currentWorld.sprites.addAll(currentWorld.addSprites);
         currentWorld.addSprites.clear();
-
         for (Sprite sprite : currentWorld.removeSprites) {
-            if (currentWorld.sprites.contains(sprite)) {
-                currentWorld.sprites.remove(sprite);
-            }
+            currentWorld.sprites.remove(sprite);
         }
         currentWorld.removeSprites.clear();
     }
@@ -69,7 +57,6 @@ public class World {
     }
 
     public static void loadBack(Graphics g, int divide, BufferedImage backDrop) {
-
         if (backDropX < Renderer.camX / divide - Renderer.gameWidth) {
             backDropX += Renderer.gameWidth;
         }
@@ -88,19 +75,13 @@ public class World {
 
         g.drawImage(backDrop, x, 0, Renderer.gameWidth, Renderer.gameHeight, null);
         g.drawImage(backDrop, bufferX, 0, Renderer.gameWidth, Renderer.gameHeight, null);
-
-
     }
 
     public void addSprite(Sprite sprite) {
-        if (!addSprites.contains(sprite)) {
-            addSprites.add(sprite);
-        }
+        addSprites.add(sprite);
     }
 
     public void removeSprite(Sprite sprite) {
-        if (!removeSprites.contains(sprite)) {
-            removeSprites.add(sprite);
-        }
+        removeSprites.add(sprite);
     }
 }

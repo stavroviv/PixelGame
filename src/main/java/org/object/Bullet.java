@@ -5,6 +5,7 @@ import org.graphics.Renderer;
 import org.world.World;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Bullet extends Sprite {
 
@@ -28,19 +29,13 @@ public class Bullet extends Sprite {
 
     public void update(float deltaTime) {
         float moveX = 0;
-
         moveX += speed * direction;
-
         posX += moveX * deltaTime;
-
-        Sprite[] colliders = getColliders(posX, posY);
-        if (colliders.length > 0) {
-            for (Sprite sprite : colliders) {
-                if (sprite instanceof BadGuy) {
-                    BadGuy badGuy = (BadGuy) sprite;
-                    badGuy.takeDamage(damage);
-                    World.currentWorld.removeSprite(this);
-                }
+        for (Sprite sprite : getColliders(posX, posY)) {
+            if (sprite instanceof BadGuy ) {
+                BadGuy badGuy = (BadGuy) sprite;
+                badGuy.takeDamage(damage);
+                World.currentWorld.removeSprite(this);
             }
         }
     }

@@ -6,7 +6,6 @@ import org.input.Input;
 import org.world.World;
 
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 public class Player extends Mob {
 

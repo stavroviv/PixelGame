@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sprite {
 
@@ -57,8 +58,8 @@ public class Sprite {
         }
     }
 
-    protected Sprite[] getColliders(float x, float y) {
-        ArrayList<Sprite> sprites = new ArrayList<>();
+    protected List<Sprite> getColliders(float x, float y) {
+        List<Sprite> sprites = new ArrayList<>();
 
         float myLeft = x - width / 2;
         float myRight = x + width / 2;
@@ -80,8 +81,7 @@ public class Sprite {
             }
         }
 
-        Sprite[] spreiteArray = new Sprite[sprites.size()];
-        return sprites.toArray(spreiteArray);
+        return sprites;
     }
 
     protected boolean doesCollide(float x, float y) {

@@ -10,9 +10,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
-import java.io.IOException;
+import java.net.URL;
 
 public class Renderer {
+
+    public static float camX = 0;
+    public static float camY = 0;
 
     private static Frame frame;
     private static Canvas canvas;
@@ -31,9 +34,6 @@ public class Renderer {
 
     private static final int targetFPS = 100;
     private static final int targetTime = 1000000000 / targetFPS;
-
-    public static float camX = 0;
-    public static float camY = 0;
 
     private static void getBestSize() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -147,7 +147,7 @@ public class Renderer {
         World.render(g);
 
         g.setColor(Color.black);
-        g.drawString("" + currentFPS, 5, gameHeight - 15);
+        g.drawString("FPS: " + currentFPS, 5, gameHeight - 15);
         g.dispose();
         g = canvas.getGraphics();
         g.drawImage(image, 0, 0, canvasWidth, canvasHeight, null);
@@ -157,8 +157,10 @@ public class Renderer {
     public static BufferedImage loadImage(String path) throws RuntimeException {
         BufferedImage rowImage;
         try {
-            rowImage = ImageIO.read(Renderer.class.getResource(path));
-        } catch (IOException e) {
+            URL resource = Renderer.class.getResource("/images/" + path);
+            assert resource != null;
+            rowImage = ImageIO.read(resource);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         BufferedImage image = canvas.getGraphicsConfiguration()

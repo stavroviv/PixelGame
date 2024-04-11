@@ -25,14 +25,14 @@ public class Player extends Mob {
     }
 
     private static void loadImages(Animation anim) {
-        anim.images.add(Renderer.loadImage("/images/roach/1.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/2.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/3.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/4.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/5.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/6.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/7.gif"));
-        anim.images.add(Renderer.loadImage("/images/roach/8.gif"));
+        anim.images.add(Renderer.loadImage("roach/1.gif"));
+        anim.images.add(Renderer.loadImage("roach/2.gif"));
+        anim.images.add(Renderer.loadImage("roach/3.gif"));
+        anim.images.add(Renderer.loadImage("roach/4.gif"));
+        anim.images.add(Renderer.loadImage("roach/5.gif"));
+        anim.images.add(Renderer.loadImage("roach/6.gif"));
+        anim.images.add(Renderer.loadImage("roach/7.gif"));
+        anim.images.add(Renderer.loadImage("roach/8.gif"));
     }
 
     public void update(float deltaTime) {
@@ -74,7 +74,7 @@ public class Player extends Mob {
         // END COLLISIONS
         if (Input.getKey(KeyEvent.VK_SPACE)) {
             Bullet bullet = new Bullet(posX, posY, direction);
-            World.currentWorld.addSprite(bullet);
+            World.addSprite(bullet);
         }
 
         posX += moveX * deltaTime;

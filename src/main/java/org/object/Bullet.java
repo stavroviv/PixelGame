@@ -4,9 +4,6 @@ import org.graphics.Animation;
 import org.graphics.Renderer;
 import org.world.World;
 
-import java.io.IOException;
-import java.util.List;
-
 public class Bullet extends Sprite {
 
     public int direction;
@@ -22,8 +19,8 @@ public class Bullet extends Sprite {
 
         Animation anim = new Animation();
         anim.fps = 80;
-        anim.images.add(Renderer.loadImage("/images/bul1.png"));
-        anim.images.add(Renderer.loadImage("/images/bul2.png"));
+        anim.images.add(Renderer.loadImage("bul1.png"));
+        anim.images.add(Renderer.loadImage("bul2.png"));
         animations = new Animation[]{anim};
     }
 
@@ -34,13 +31,8 @@ public class Bullet extends Sprite {
         for (Sprite sprite : getColliders(posX, posY)) {
             if (sprite instanceof BadGuy badGuy) {
                 badGuy.takeDamage(damage);
-                World.currentWorld.removeSprite(this);
+                World.removeSprite(this);
             }
         }
     }
-
-//	public void render(){
-//		animations[currentAnimations].playAnimation();
-//		super.render(g);
-//	}
 }

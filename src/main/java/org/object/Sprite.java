@@ -66,7 +66,7 @@ public class Sprite {
         float myUp = y - height / 2;
         float myDown = y + height / 2;
 
-        for (Sprite sprite : World.currentWorld.sprites) {
+        for (Sprite sprite : World.getSprites()) {
             if (sprite == this || !sprite.isSolid) {
                 continue;
             }
@@ -90,7 +90,7 @@ public class Sprite {
         float myUp = y - height / 2;
         float myDown = y + height / 2;
 
-        for (Sprite sprite : World.currentWorld.sprites) {
+        for (Sprite sprite : World.getSprites()) {
             if (sprite == this || !sprite.isSolid) {
                 continue;
             }

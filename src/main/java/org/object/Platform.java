@@ -13,7 +13,7 @@ public class Platform extends Sprite {
     }
 
     public void render(Graphics g) {
-        g.setColor(new Color(120, 80, 50));
+        g.setColor(new Color(76, 75, 56));
         g.fillRect(
                 (int) (posX - width / 2) - (int) Renderer.camX + Renderer.gameWidth / 2,
                 (int) (posY - height / 2) - (int) Renderer.camY + Renderer.gameHeight / 2,

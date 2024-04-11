@@ -64,7 +64,7 @@ public class BadGuy extends Mob {
     }
 
     public void takeDamage(float damage) {
-        World.currentWorld.removeSprite(this);
+        World.removeSprite(this);
     }
 
 }

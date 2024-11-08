@@ -4,13 +4,10 @@ import org.game.Game;
 import org.input.Input;
 import org.world.World;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
-import java.net.URL;
 
 public class Renderer {
 
@@ -109,6 +106,10 @@ public class Renderer {
         new Thread(Renderer::gameActivity).start();
     }
 
+    public static Canvas getCanvas() {
+        return canvas;
+    }
+
     private static void gameActivity() {
         GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
         VolatileImage vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
@@ -158,20 +159,5 @@ public class Renderer {
         g = canvas.getGraphics();
         g.drawImage(image, 0, 0, canvasWidth, canvasHeight, null);
         g.dispose();
-    }
-
-    public static BufferedImage loadImage(String path) throws RuntimeException {
-        BufferedImage rowImage;
-        try {
-            URL resource = Renderer.class.getResource("/images/" + path);
-            assert resource != null;
-            rowImage = ImageIO.read(resource);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        BufferedImage image = canvas.getGraphicsConfiguration()
-                .createCompatibleImage(rowImage.getWidth(), rowImage.getHeight(), rowImage.getTransparency());
-        image.getGraphics().drawImage(rowImage, 0, 0, rowImage.getWidth(), rowImage.getHeight(), null);
-        return image;
     }
 }

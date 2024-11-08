@@ -3,6 +3,7 @@ package org.object;
 import org.graphics.Animation;
 import org.graphics.Renderer;
 import org.input.Input;
+import org.utils.ImageUtils;
 import org.world.World;
 
 import java.awt.event.KeyEvent;
@@ -25,14 +26,9 @@ public class Player extends Mob {
     }
 
     private static void loadImages(Animation anim) {
-        anim.images.add(Renderer.loadImage("roach/1.gif"));
-        anim.images.add(Renderer.loadImage("roach/2.gif"));
-        anim.images.add(Renderer.loadImage("roach/3.gif"));
-        anim.images.add(Renderer.loadImage("roach/4.gif"));
-        anim.images.add(Renderer.loadImage("roach/5.gif"));
-        anim.images.add(Renderer.loadImage("roach/6.gif"));
-        anim.images.add(Renderer.loadImage("roach/7.gif"));
-        anim.images.add(Renderer.loadImage("roach/8.gif"));
+        for (int i = 1; i < 8; i++) {
+            anim.images.add(ImageUtils.loadImage("roach/" + i + ".gif"));
+        }
     }
 
     public void update(float deltaTime) {

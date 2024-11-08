@@ -5,6 +5,7 @@ import org.object.BadGuy;
 import org.object.Platform;
 import org.object.Player;
 import org.object.Sprite;
+import org.utils.ImageUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -39,8 +40,8 @@ public class World {
     }
 
     private static void initBackground() {
-        backDrop = Renderer.loadImage("backDrop.png");
-        backDrop2 = Renderer.loadImage("backDrop2.png");
+        backDrop = ImageUtils.loadImage("backDrop.png");
+        backDrop2 = ImageUtils.loadImage("backDrop2.png");
     }
 
     public static void update() {

@@ -2,6 +2,7 @@ package org.object;
 
 import org.graphics.Animation;
 import org.graphics.Renderer;
+import org.utils.ImageUtils;
 import org.world.World;
 
 public class Bullet extends Sprite {
@@ -19,8 +20,8 @@ public class Bullet extends Sprite {
 
         Animation anim = new Animation();
         anim.fps = 80;
-        anim.images.add(Renderer.loadImage("bul1.png"));
-        anim.images.add(Renderer.loadImage("bul2.png"));
+        anim.images.add(ImageUtils.loadImage("bul1.png"));
+        anim.images.add(ImageUtils.loadImage("bul2.png"));
         animations = new Animation[]{anim};
     }
 

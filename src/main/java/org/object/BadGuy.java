@@ -44,8 +44,8 @@ public class BadGuy extends Mob {
     }
 
     public void render(Graphics g) {
-        int realX = (int) (posX - width / 2);
-        int realY = (int) (posY - height / 2);
+        var realX = (int) (posX - width / 2);
+        var realY = (int) (posY - height / 2);
 
         realX = realX - (int) Renderer.camX + Renderer.gameWidth / 2;
         realY = realY - (int) Renderer.camY + Renderer.gameHeight / 2;

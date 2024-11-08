@@ -33,10 +33,10 @@ public class Renderer {
     private static final int targetTime = 1000000000 / targetFPS;
 
     private static void getBestSize() {
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Dimension screenSize = toolkit.getScreenSize();
+        var toolkit = Toolkit.getDefaultToolkit();
+        var screenSize = toolkit.getScreenSize();
 
-        boolean done = false;
+        var done = false;
 
         while (!done) {
             canvasWidth += GAME_WIDTH;
@@ -49,9 +49,9 @@ public class Renderer {
             }
         }
 
-        int xDiff = screenSize.width - canvasWidth;
-        int yDiff = screenSize.height - canvasHeight;
-        int factor = canvasWidth / GAME_WIDTH;
+        var xDiff = screenSize.width - canvasWidth;
+        var yDiff = screenSize.height - canvasHeight;
+        var factor = canvasWidth / GAME_WIDTH;
 
         gameWidth = canvasWidth / factor + xDiff / factor;
         gameHeight = canvasHeight / factor + yDiff / factor;
@@ -65,10 +65,11 @@ public class Renderer {
     }
 
     private static void makeFullScreen() {
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = env.getDefaultScreenDevice();
+        var env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        var gd = env.getDefaultScreenDevice();
         if (gd.isFullScreenSupported()) {
-            // doesn't set a really fullscreen in win 10, even with hint System.setProperty("sun.java2d.d3d", "false");
+            // doesn't set a really fullscreen in win 10, even
+            // with hint System.setProperty("sun.java2d.d3d", "false");
             // gd.setFullScreenWindow(frame);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
@@ -111,12 +112,12 @@ public class Renderer {
     }
 
     private static void gameActivity() {
-        GraphicsConfiguration gc = canvas.getGraphicsConfiguration();
-        VolatileImage vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
-        int totalFrames = 0;
+        var gc = canvas.getGraphicsConfiguration();
+        var vImage = gc.createCompatibleVolatileImage(gameWidth, gameHeight);
+        var totalFrames = 0;
 
         while (true) {
-            long startTime = System.nanoTime();
+            var startTime = System.nanoTime();
             totalFrames++;
             if (System.nanoTime() > lastFPSCheck + 1000000000) {
                 lastFPSCheck = System.nanoTime();
@@ -130,7 +131,7 @@ public class Renderer {
 
             showGraphics(vImage);
 
-            long totalTime = System.nanoTime() - startTime;
+            var totalTime = System.nanoTime() - startTime;
 
             if (totalTime < targetTime) {
                 try {
@@ -143,7 +144,7 @@ public class Renderer {
     }
 
     private static void showGraphics(VolatileImage image) {
-        Graphics g = image.getGraphics();
+        var g = image.getGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, gameWidth, gameHeight);
 

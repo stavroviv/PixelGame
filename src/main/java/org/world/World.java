@@ -34,7 +34,7 @@ public class World {
     }
 
     private static void initPlatforms() {
-        for (int i = 0; i < 500; i++) {
+        for (var i = 0; i < 500; i++) {
             addSprite(new Platform(2 * i * 100, 900 - new Random().nextInt(4) * 50, 300, 25));
         }
     }
@@ -45,13 +45,13 @@ public class World {
     }
 
     public static void update() {
-        float deltaTime = 0.07f;
-        for (Sprite sprite : sprites) {
+        var deltaTime = 0.07f;
+        for (var sprite : sprites) {
             sprite.update(deltaTime);
         }
         sprites.addAll(addSprites);
         addSprites.clear();
-        for (Sprite sprite : removeSprites) {
+        for (var sprite : removeSprites) {
             sprites.remove(sprite);
         }
         removeSprites.clear();
@@ -60,7 +60,7 @@ public class World {
     public static void render(Graphics g) {
         loadBack(g, 16, backDrop);
         loadBack(g, 4, backDrop2);
-        for (Sprite sprite : sprites) {
+        for (var sprite : sprites) {
             sprite.render(g);
         }
     }
@@ -73,7 +73,7 @@ public class World {
             backDropX -= Renderer.gameWidth;
         }
 
-        int x = backDropX - (int) Renderer.camX / divide;
+        var x = backDropX - (int) Renderer.camX / divide;
         int bufferX;
 
         if (backDropX > Renderer.camX / divide) {

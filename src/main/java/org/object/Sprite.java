@@ -41,7 +41,7 @@ public class Sprite {
 
         animations[currentAnimations].playAnimation();
 
-        BufferedImage image = animations[currentAnimations].getImage();
+        var image = animations[currentAnimations].getImage();
         if (image == null) {
             return;
         }
@@ -68,20 +68,20 @@ public class Sprite {
     protected List<Sprite> getColliders(float x, float y) {
         List<Sprite> sprites = new ArrayList<>();
 
-        float myLeft = x - width / 2;
-        float myRight = x + width / 2;
-        float myUp = y - height / 2;
-        float myDown = y + height / 2;
+        var myLeft = x - width / 2;
+        var myRight = x + width / 2;
+        var myUp = y - height / 2;
+        var myDown = y + height / 2;
 
-        for (Sprite sprite : World.getSprites()) {
+        for (var sprite : World.getSprites()) {
             if (sprite == this || !sprite.isSolid) {
                 continue;
             }
 
-            float otherLeft = sprite.posX - sprite.width / 2;
-            float otherRight = sprite.posX + sprite.width / 2;
-            float otherUp = sprite.posY - sprite.height / 2;
-            float otherDown = sprite.posY + sprite.height / 2;
+            var otherLeft = sprite.posX - sprite.width / 2;
+            var otherRight = sprite.posX + sprite.width / 2;
+            var otherUp = sprite.posY - sprite.height / 2;
+            var otherDown = sprite.posY + sprite.height / 2;
 
             if (myLeft < otherRight && myRight > otherLeft && myDown > otherUp && myUp < otherDown) {
                 sprites.add(sprite);

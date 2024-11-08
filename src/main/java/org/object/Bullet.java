@@ -18,7 +18,7 @@ public class Bullet extends Sprite {
         height = 8;
         isSolid = false;
 
-        Animation anim = new Animation();
+        var anim = new Animation();
         anim.fps = 80;
         anim.images.add(ImageUtils.loadImage("bul1.png"));
         anim.images.add(ImageUtils.loadImage("bul2.png"));
@@ -33,7 +33,7 @@ public class Bullet extends Sprite {
         float moveX = 0;
         moveX += speed * direction;
         posX += moveX * deltaTime;
-        for (Sprite sprite : getColliders(posX, posY)) {
+        for (var sprite : getColliders(posX, posY)) {
             if (sprite instanceof BadGuy badGuy) {
                 badGuy.takeDamage(damage);
                 World.removeSprite(this);

@@ -20,13 +20,13 @@ public class Player extends Mob {
         super(posX, posY);
         width = 56;
         height = 28;
-        Animation anim = new Animation();
+        var anim = new Animation();
         loadImages(anim);
         animations = new Animation[]{anim};
     }
 
     private static void loadImages(Animation anim) {
-        for (int i = 1; i < 8; i++) {
+        for (var i = 1; i < 8; i++) {
             anim.images.add(ImageUtils.loadImage("roach/" + i + ".gif"));
         }
     }
@@ -69,7 +69,7 @@ public class Player extends Mob {
 
         // END COLLISIONS
         if (Input.getKey(KeyEvent.VK_SPACE)) {
-            Bullet bullet = new Bullet(posX + (direction == 1 ? 60 : -30), posY - 15, direction);
+            var bullet = new Bullet(posX + (direction == 1 ? 60 : -30), posY - 15, direction);
             World.addSprite(bullet);
         }
 
